@@ -6,6 +6,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Sodales ut eu sem integer vitae justo eget. Fringilla ut morbi tincidunt augue interdum velit euismod in. Sem et tortor consequat id porta nibh venenatis cras.
+            Morbi quis commodo odio aenean sed adipiscing diam. Commodo viverra maecenas accumsan lacus vel. Nisl tincidunt eget nullam non nisi est sit amet.
+            Proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Elementum nisi quis eleifend quam adipiscing. Sagittis aliquam malesuada bibendum arcu.</p>
+        <div class="row">
+            <h3>Background</h3>
+            <input type="color" id="bg" value="#FFFFF">
+        </div>
+        <div class="row">
+            <h3>Text!</h3>
+            <input type="color" id="txt">
+        </div>
+        <button id="clear">CLEAR</button>
+    </div>
+</div>
+<script>
+    const content = document.querySelector('.content');
+    const bg = document.getElementById('bg');
+    const txt = document.getElementById('txt');
+    const clear = document.getElementById('clear')
 
+    bg.addEventListener('change', function (e){
+        content.style.backgroundColor = e.target.value;
+    })
+
+    txt.addEventListener('change', function (e){
+        content.style.color = e.target.value;
+    })
+
+    clear.addEventListener('click', function (e){
+        content.style.backgroundColor = 'white';
+        bg.value = '#FFFFFF'
+        content.style.color = 'black';
+        txt.value = '#000000'
+    })
+</script>
 </body>
 </html>
