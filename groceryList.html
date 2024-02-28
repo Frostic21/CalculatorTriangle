@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="content">
+    <h1>Hello!</h1>
+    <div>
+      <div>
+        <label for="item">Item:</label>
+        <input type="text" id="item" name="first_name" placeholder="eggs, milk, etc.">
+      </div>
+    </div>
+    <button id="Add">Add Item</button>
+    <button id="clear">Clear</button>
+    <div  id="items"></div>
+  </div>
+</div>
+<script>
+  const grocery = document.getElementById('item');
+  const full = document.getElementById('items');
+  const clearButton = document.getElementById('clear')
+
+  const addButton = document.getElementById('Add');
+
+  clearButton.addEventListener('click', function(e){
+    grocery.value = " ";
+    const ele = document.querySelector('li');
+    ele.remove();
+  })
+
+  addButton.addEventListener('click', listCreator)
+
+  function listCreator() {
+    let item = grocery.value;
+    const ele = document.createElement('li');
+    ele.innerHTML = item;
+    grocery.value= ' '
+    full.insertAdjacentElement("afterbegin", ele);
+  }
+</script>
+</body>
+</html>
