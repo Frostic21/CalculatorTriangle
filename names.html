@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter Name</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <h1>Hello!</h1>
+        <div>
+            <div>
+                <label for="first">First Name</label>
+                <input type="text" id="first" name="first_name" placeholder="John">
+            </div>
+            <div>
+                <label for="last">Last Name</label>
+                <input type="text" id="last" name="last_name" placeholder="Doe">
+                <button id="clear">Clear</button>
+            </div>
+        </div>
+        <button id="hello">Hello</button>
+        <div id="names"></div>
+    </div>
+</div>
+<script>
+    const firstName = document.getElementById('first');
+    const lastName = document.getElementById('last');
+    const full = document.getElementById('names')
+
+    const helloButton = document.getElementById('hello')
+    const clearButton = document.getElementById('clear')
+
+    clearButton.addEventListener('click', function(e){
+        firstName.value = " ";
+        lastName.value = " ";
+        const ele = document.querySelector('h4');
+        ele.remove();
+    })
+
+    helloButton.addEventListener('click', nameCreator)
+
+    function nameCreator() {
+        let first = firstName.value;
+        let last = lastName.value;
+        let fullName = `Hello ${first} ${last}`;
+        const ele = document.createElement('h4');
+        ele.innerHTML = fullName;
+        firstName.value = " ";
+        lastName.value = " ";
+        full.insertAdjacentElement("afterbegin", ele);
+    }
+</script>
+</body>
+</html>
