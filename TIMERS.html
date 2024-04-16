@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timers</title>
+  <link rel="stylesheet" href="style.css">
+    <style>
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .purple{
+            background-color: purple;
+        }
+        .green{
+            background-color: green;
+        }
+        .pink{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="content">
+      <button id="trigger">Click Me!</button>
+      <button id="interval">Repeat</button>
+      <button id="cancel">Cancel Repeat</button>
+      <button id="remove">Disappear</button>
+  </div>
+  <br>
+  <div class = "content" id="color">
+    <button id="colors">Colors!</button>
+      <button id="stopcolors">Stop Colors</button>
+  </div>
+</div>
+</body>
+<script>
+  const myButton = document.getElementById("trigger");
+  const repeatButton = document.getElementById("interval");
+  const disappearing = document.getElementById("remove");
+  const cancelButton = document.getElementById("cancel");
+  const colors = document.getElementById("colors");
+  const colorDiv = document.getElementById("color");
+  const stopColors = document.getElementById("stopcolors");
+  let interval;
+  let color;
+  let counter = 0;
+  let counter2 = 0;
+  let randomNumber;
+
+
+  myButton.addEventListener('click', function(){
+    //this will happen in 1000ms, or 1 second
+    setTimeout(function(){
+      console.log("I was clicked 1 second ago.");
+    }, 1000);
+    //Not in a timeout, so does not wait
+    console.log("Happens right away");
+  })
+
+  repeatButton.addEventListener('click', function (){
+    if (interval){
+     interval = setInterval(function (){
+       console.log("I happen every second.")
+     }, 1000)
+    }
+  });
+
+  cancelButton.addEventListener('click', function (){
+    if(interval){
+      clearInterval(interval);
+      interval = null;
+    }
+  })
+
+  disappearing.addEventListener('click', function (){
+    setInterval(function(){
+      counter++;
+      if (counter === 3){
+        disappearing.remove();
+      }
+    }, 1000)
+  })
+
+  colors.addEventListener('click', function(){
+      if (counter2 >= 1){
+      } else{
+          counter2++;
+          color = setInterval(function() {
+              randomNumber = Math.floor(Math.random() * 6);
+              if (randomNumber === 1) {
+                  colorDiv.classList.remove('blue');
+                  colorDiv.classList.remove('pink');
+                  colorDiv.classList.remove('purple');
+                  colorDiv.classList.remove('green');
+                  colorDiv.classList.add('red');
+              } else if (randomNumber === 2) {
+                  colorDiv.classList.remove('red');
+                  colorDiv.classList.remove('pink');
+                  colorDiv.classList.remove('purple');
+                  colorDiv.classList.remove('green');
+                  colorDiv.classList.add('blue');
+              } else if (randomNumber === 3) {
+                  colorDiv.classList.remove('blue');
+                  colorDiv.classList.remove('pink');
+                  colorDiv.classList.remove('red');
+                  colorDiv.classList.remove('green');
+                  colorDiv.classList.add('purple');
+              } else if (randomNumber === 4) {
+                  colorDiv.classList.remove('blue');
+                  colorDiv.classList.remove('red');
+                  colorDiv.classList.remove('purple');
+                  colorDiv.classList.remove('green');
+                  colorDiv.classList.add('pink');
+              } else if (randomNumber === 5) {
+                  colorDiv.classList.remove('blue');
+                  colorDiv.classList.remove('red');
+                  colorDiv.classList.remove('purple');
+                  colorDiv.classList.remove('pink');
+                  colorDiv.classList.add('green');
+              }
+          },5000)
+      }
+  })
+  stopColors.addEventListener('click', function(){
+      if(color){
+          clearInterval(color);
+          counter2 = 0;
+      }
+  })
+</script>
+</html>
