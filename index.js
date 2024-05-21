@@ -1,4 +1,7 @@
 const cardList = document.querySelector('.cardList');
+const gameOver = document.getElementById('scoreBoard');
+const image = document.getElementById('image');
+const p = document.getElementById('p');
 let score = 0;
 
 buildBoard();
@@ -9,9 +12,16 @@ let interval = setInterval(function(){
 
 let interval2 = setInterval(function(){
     if (cardList.children.length === 0){
-        let gameOver = document.createElement('p');
-        gameOver.innerHTML = `Your score was ${score}!`
-        cardList.appendChild(gameOver);
+        gameOver.textContent = `Your score was ${score}!`
+        if(score <= 40){
+            p.textContent = 'Good Job!!!'
+            let img = document.createElement('img');
+            img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMDh-pij36oH9hhmTRWu6ku1ij_3JlMdHBfgvzKwmTwg&s";
+            img.style.width = '600px';
+            img.style.height = '500px';
+            image.appendChild(img);
+
+        }
         clearInterval(interval2);
     }
 },100)
@@ -25,14 +35,16 @@ cardList.addEventListener('click', function(e){
         e.target.classList.remove('active');
         e.target.classList.add('inactive');
         score++
+        gameOver.textContent = `Score: ${score}`
         return
     }
-    e.target.remove();
     score = score+2
+    e.target.remove();
     let children = cardList.children;
     if(children.length < 1){
         clearInterval(interval);
     }
+    gameOver.textContent = `Score: ${score}`
 })
 
 function addCard(value){
