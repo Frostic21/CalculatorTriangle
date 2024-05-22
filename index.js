@@ -3,18 +3,21 @@ const gameOver = document.getElementById('scoreBoard');
 const image = document.getElementById('image');
 const p = document.getElementById('p');
 let score = 0;
+let counter = 0;
 
 buildBoard();
-
 let interval = setInterval(function(){
-    addCard(cardList.children.length + 1) //make it start as 1 not 0
-}, 2000)
+    if(counter >= 1){
+        addCard(cardList.children.length + 1) //make it start as 1 not 0
+    }
+    counter++
+}, 1500)
 
 let interval2 = setInterval(function(){
     if (cardList.children.length === 0){
         gameOver.textContent = `Your score was ${score}!`
         if(score <= 40){
-            p.textContent = 'Good Job!!!'
+            p.textContent = 'Good Job!!!';
             let img = document.createElement('img');
             img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMDh-pij36oH9hhmTRWu6ku1ij_3JlMdHBfgvzKwmTwg&s";
             img.style.width = '600px';
